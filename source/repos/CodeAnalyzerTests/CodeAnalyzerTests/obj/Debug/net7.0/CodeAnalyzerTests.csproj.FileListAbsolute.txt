@@ -1,0 +1,14 @@
+C:\Users\sevas\source\repos\CodeAnalyzerTests\CodeAnalyzerTests\bin\Debug\net7.0\CodeAnalyzerTests.exe
+C:\Users\sevas\source\repos\CodeAnalyzerTests\CodeAnalyzerTests\bin\Debug\net7.0\CodeAnalyzerTests.deps.json
+C:\Users\sevas\source\repos\CodeAnalyzerTests\CodeAnalyzerTests\bin\Debug\net7.0\CodeAnalyzerTests.runtimeconfig.json
+C:\Users\sevas\source\repos\CodeAnalyzerTests\CodeAnalyzerTests\bin\Debug\net7.0\CodeAnalyzerTests.dll
+C:\Users\sevas\source\repos\CodeAnalyzerTests\CodeAnalyzerTests\bin\Debug\net7.0\CodeAnalyzerTests.pdb
+C:\Users\sevas\source\repos\CodeAnalyzerTests\CodeAnalyzerTests\obj\Debug\net7.0\CodeAnalyzerTests.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\sevas\source\repos\CodeAnalyzerTests\CodeAnalyzerTests\obj\Debug\net7.0\CodeAnalyzerTests.AssemblyInfoInputs.cache
+C:\Users\sevas\source\repos\CodeAnalyzerTests\CodeAnalyzerTests\obj\Debug\net7.0\CodeAnalyzerTests.AssemblyInfo.cs
+C:\Users\sevas\source\repos\CodeAnalyzerTests\CodeAnalyzerTests\obj\Debug\net7.0\CodeAnalyzerTests.csproj.CoreCompileInputs.cache
+C:\Users\sevas\source\repos\CodeAnalyzerTests\CodeAnalyzerTests\obj\Debug\net7.0\CodeAnalyzerTests.dll
+C:\Users\sevas\source\repos\CodeAnalyzerTests\CodeAnalyzerTests\obj\Debug\net7.0\refint\CodeAnalyzerTests.dll
+C:\Users\sevas\source\repos\CodeAnalyzerTests\CodeAnalyzerTests\obj\Debug\net7.0\CodeAnalyzerTests.pdb
+C:\Users\sevas\source\repos\CodeAnalyzerTests\CodeAnalyzerTests\obj\Debug\net7.0\CodeAnalyzerTests.genruntimeconfig.cache
+C:\Users\sevas\source\repos\CodeAnalyzerTests\CodeAnalyzerTests\obj\Debug\net7.0\ref\CodeAnalyzerTests.dll
