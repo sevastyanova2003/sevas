@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.7.34031.279
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeAnalyzerWinForms", "CodeAnalyzerWinForms\CodeAnalyzerWinForms.csproj", "{FF0F9E86-DF18-49B5-BD03-8DCD1A4D653D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FF0F9E86-DF18-49B5-BD03-8DCD1A4D653D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FF0F9E86-DF18-49B5-BD03-8DCD1A4D653D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FF0F9E86-DF18-49B5-BD03-8DCD1A4D653D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FF0F9E86-DF18-49B5-BD03-8DCD1A4D653D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A0805334-D660-483F-A31F-9E6AF5046551}
+	EndGlobalSection
+EndGlobal
