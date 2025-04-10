@@ -1,0 +1,24 @@
+{
+  "version": 2,
+  "dgSpecHash": "JzZA+jZ8yNMc+cx8vl8aPKYXVNpSCmLk7tsdn/Ak7BycBknoumVcUQC3OLrvuxWF3fZyYPyGWzlfssBKRZqquA==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\sevas\\source\\repos\\CodeAnalyzerServer\\CodeAnalyzerServer\\CodeAnalyzerServer.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\sevas\\.nuget\\packages\\microsoft.entityframeworkcore\\7.0.18\\microsoft.entityframeworkcore.7.0.18.nupkg.sha512",
+    "C:\\Users\\sevas\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\7.0.18\\microsoft.entityframeworkcore.abstractions.7.0.18.nupkg.sha512",
+    "C:\\Users\\sevas\\.nuget\\packages\\microsoft.entityframeworkcore.analyzers\\7.0.18\\microsoft.entityframeworkcore.analyzers.7.0.18.nupkg.sha512",
+    "C:\\Users\\sevas\\.nuget\\packages\\microsoft.entityframeworkcore.relational\\7.0.18\\microsoft.entityframeworkcore.relational.7.0.18.nupkg.sha512",
+    "C:\\Users\\sevas\\.nuget\\packages\\microsoft.extensions.caching.abstractions\\7.0.0\\microsoft.extensions.caching.abstractions.7.0.0.nupkg.sha512",
+    "C:\\Users\\sevas\\.nuget\\packages\\microsoft.extensions.caching.memory\\7.0.0\\microsoft.extensions.caching.memory.7.0.0.nupkg.sha512",
+    "C:\\Users\\sevas\\.nuget\\packages\\microsoft.extensions.configuration.abstractions\\7.0.0\\microsoft.extensions.configuration.abstractions.7.0.0.nupkg.sha512",
+    "C:\\Users\\sevas\\.nuget\\packages\\microsoft.extensions.dependencyinjection\\7.0.0\\microsoft.extensions.dependencyinjection.7.0.0.nupkg.sha512",
+    "C:\\Users\\sevas\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\7.0.0\\microsoft.extensions.dependencyinjection.abstractions.7.0.0.nupkg.sha512",
+    "C:\\Users\\sevas\\.nuget\\packages\\microsoft.extensions.logging\\7.0.0\\microsoft.extensions.logging.7.0.0.nupkg.sha512",
+    "C:\\Users\\sevas\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\7.0.0\\microsoft.extensions.logging.abstractions.7.0.0.nupkg.sha512",
+    "C:\\Users\\sevas\\.nuget\\packages\\microsoft.extensions.options\\7.0.0\\microsoft.extensions.options.7.0.0.nupkg.sha512",
+    "C:\\Users\\sevas\\.nuget\\packages\\microsoft.extensions.primitives\\7.0.0\\microsoft.extensions.primitives.7.0.0.nupkg.sha512",
+    "C:\\Users\\sevas\\.nuget\\packages\\npgsql\\7.0.7\\npgsql.7.0.7.nupkg.sha512",
+    "C:\\Users\\sevas\\.nuget\\packages\\npgsql.entityframeworkcore.postgresql\\7.0.18\\npgsql.entityframeworkcore.postgresql.7.0.18.nupkg.sha512"
+  ],
+  "logs": []
+}
