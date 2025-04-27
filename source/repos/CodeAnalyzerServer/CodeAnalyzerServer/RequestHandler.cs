@@ -8,18 +8,31 @@ using System.Xml.Linq;
 
 namespace CodeAnalyzerServer
 {
+  /// <summary>
+  /// Class for handling string requests and generating string responses
+  /// </summary>
   public class RequestHandler
   {
     DatabaseHandler databaseHandler;
     QueryText queryText;
     string adminUsername = "admin";
     string adminPassword = "123";
+
+    /// <summary>
+    /// Creates RequestHandler with <paramref name="handler"/>
+    /// </summary>
+    /// <param name="handler"></param>
     public RequestHandler(DatabaseHandler handler)
     {
       databaseHandler = handler;
       queryText = new QueryText();
     }
 
+    /// <summary>
+    /// Handles request <paramref name="message"/> and generates string response
+    /// </summary>
+    /// <param name="message"></param>
+    /// <returns></returns>
     public string GetResponse(string message)
     {
       if (message == null || message.Length == 0)
@@ -82,6 +95,11 @@ namespace CodeAnalyzerServer
       return "Incorrect request";
     }
 
+    /// <summary>
+    /// Handles GetStudentStats request
+    /// </summary>
+    /// <param name="messageList"></param>
+    /// <returns></returns>
     public string GetStudentStats(List<string> messageList)
     {
       if (!GetAuth(messageList))
@@ -116,6 +134,11 @@ namespace CodeAnalyzerServer
       return "Incorrect request";
     }
 
+    /// <summary>
+    /// Handles getFile request
+    /// </summary>
+    /// <param name="messageList"></param>
+    /// <returns></returns>
     public string GetFile(List<string> messageList)
     {
       if (!GetAuth(messageList))
@@ -132,6 +155,11 @@ namespace CodeAnalyzerServer
       }
     }
 
+    /// <summary>
+    /// Handles getMistakes request
+    /// </summary>
+    /// <param name="messageList"></param>
+    /// <returns></returns>
     public string GetMistakes(List<string> messageList)
     {
       if (!GetAuth(messageList))
@@ -149,6 +177,11 @@ namespace CodeAnalyzerServer
       }
     }
 
+    /// <summary>
+    /// Handles DeleteEntry request
+    /// </summary>
+    /// <param name="messageList"></param>
+    /// <returns></returns>
     public string DeleteEntry(List<string> messageList)
     {
       if (!GetAuth(messageList))
@@ -166,6 +199,11 @@ namespace CodeAnalyzerServer
       }
     }
 
+    /// <summary>
+    /// Handles get teacher's groups request
+    /// </summary>
+    /// <param name="messageList"></param>
+    /// <returns></returns>
     public string GetGroups(List<string> messageList)
     {
       if (!GetAuth(messageList))
@@ -181,6 +219,11 @@ namespace CodeAnalyzerServer
       }
     }
 
+    /// <summary>
+    /// Handles get teacher's students request
+    /// </summary>
+    /// <param name="messageList"></param>
+    /// <returns></returns>
     public string GetStudents(List<string> messageList)
     {
       if (!GetAuth(messageList))
@@ -197,6 +240,12 @@ namespace CodeAnalyzerServer
       }
     }
 
+    /// <summary>
+    /// Handles entry addition requests
+    /// </summary>
+    /// <param name="messageList"></param>
+    /// <param name="message"></param>
+    /// <returns></returns>
     public string GetEntryAdded(List<string> messageList, string message)
     {
       if (!GetAuth(messageList))
@@ -223,7 +272,11 @@ namespace CodeAnalyzerServer
       }
     }
 
-
+    /// <summary>
+    /// Handles get group's stats request
+    /// </summary>
+    /// <param name="messageList"></param>
+    /// <returns></returns>
     public string GetGroupStats(List<string> messageList)
     {
       if (!GetAuth(messageList))
@@ -261,6 +314,11 @@ namespace CodeAnalyzerServer
       return "Incorrect request";
     }
 
+    /// <summary>
+    /// Handles getStudentEntries request
+    /// </summary>
+    /// <param name="messageList"></param>
+    /// <returns></returns>
     public string GetStudentEntries(List<string> messageList)
     {
       if (!GetAuth(messageList))
@@ -292,6 +350,11 @@ namespace CodeAnalyzerServer
       return "FAILED\nIncorrect request";
     }
 
+    /// <summary>
+    /// Handles teacher addition requests
+    /// </summary>
+    /// <param name="messageList"></param>
+    /// <returns></returns>
     public string GetTeacherAdded(List<string> messageList)
     {
       if (!GetAdminAuth(messageList))
@@ -312,6 +375,11 @@ namespace CodeAnalyzerServer
       return "Teacher added";
     }
 
+    /// <summary>
+    /// Handles GetTeacherDeleted request
+    /// </summary>
+    /// <param name="messageList"></param>
+    /// <returns></returns>
     public string GetTeacherDeleted(List<string> messageList)
     {
       if (!GetAdminAuth(messageList))
@@ -333,6 +401,11 @@ namespace CodeAnalyzerServer
       return "Teacher deleted";
     }
 
+    /// <summary>
+    /// Handles GetGroupDeleted requests
+    /// </summary>
+    /// <param name="messageList"></param>
+    /// <returns></returns>
     public string GetGroupDeleted(List<string> messageList)
     {
       if (!GetAdminAuth(messageList))
@@ -354,6 +427,11 @@ namespace CodeAnalyzerServer
       return "Group deleted";
     }
 
+    /// <summary>
+    /// Handles GetStudentDeleted requests
+    /// </summary>
+    /// <param name="messageList"></param>
+    /// <returns></returns>
     public string GetStudentDeleted(List<string> messageList)
     {
       if (!GetAdminAuth(messageList))
@@ -375,6 +453,11 @@ namespace CodeAnalyzerServer
       return "Student deleted";
     }
 
+    /// <summary>
+    /// Handles student addition requests
+    /// </summary>
+    /// <param name="messageList"></param>
+    /// <returns></returns>
     public string GetStudentAdded(List<string> messageList)
     {
       if (!GetAdminAuth(messageList))
@@ -396,6 +479,11 @@ namespace CodeAnalyzerServer
       return "Student added";
     }
 
+    /// <summary>
+    /// Handles group addition requests
+    /// </summary>
+    /// <param name="messageList"></param>
+    /// <returns></returns>
     public string GetGroupAdded(List<string> messageList)
     {
       if (!GetAdminAuth(messageList))
@@ -417,6 +505,11 @@ namespace CodeAnalyzerServer
       return "Group added";
     }
 
+    /// <summary>
+    /// Handles update of group's teacher requests
+    /// </summary>
+    /// <param name="messageList"></param>
+    /// <returns></returns>
     public string GetGroupUpdated(List<string> messageList)
     {
       if (!GetAdminAuth(messageList))
@@ -438,6 +531,11 @@ namespace CodeAnalyzerServer
       return "Group teacher updated";
     }
 
+    /// <summary>
+    /// Handles update of student's group requests
+    /// </summary>
+    /// <param name="messageList"></param>
+    /// <returns></returns>
     public string GetStudentUpdated(List<string> messageList)
     {
       if (!GetAdminAuth(messageList))
@@ -459,11 +557,21 @@ namespace CodeAnalyzerServer
       return "Student group updated";
     }
 
+    /// <summary>
+    /// Handles admin authorization request
+    /// </summary>
+    /// <param name="messageList"></param>
+    /// <returns></returns>
     public bool GetAdminAuth(List<string> messageList)
     {
       return GetAuth(messageList) && messageList[3] == "AdminMode";
     }
 
+    /// <summary>
+    /// Handles authorization requests
+    /// </summary>
+    /// <param name="messageList"></param>
+    /// <returns></returns>
     public bool GetAuth(List<string> messageList)
     {
       if (messageList.Count < 4)

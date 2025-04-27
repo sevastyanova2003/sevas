@@ -8,10 +8,18 @@ using Npgsql;
 
 namespace CodeAnalyzerServer
 {
+  /// <summary>
+  /// Class for working with database
+  /// </summary>
   public class DatabaseHandler
   {
     private string _connectionString;
 
+    /// <summary>
+    /// Creates DatabaseHandler with <paramref name="connectionString"/>.
+    /// Creates tables teachers, groups, students, entries
+    /// </summary>
+    /// <param name="connectionString"></param>
     public DatabaseHandler(string connectionString)
     {
       _connectionString = connectionString;
@@ -29,6 +37,12 @@ namespace CodeAnalyzerServer
       con.Close();
     }
 
+    /// <summary>
+    /// Checks if <paramref name="username"/>, <paramref name="password"/> is in teachers table
+    /// </summary>
+    /// <param name="username"></param>
+    /// <param name="password"></param>
+    /// <returns></returns>
     public bool authTeacher(string username, string password)
     {
       using var con = new NpgsqlConnection(_connectionString);
@@ -40,6 +54,12 @@ namespace CodeAnalyzerServer
       return res > 0;
     }
 
+    /// <summary>
+    /// Checks if <paramref name="username"/>, <paramref name="password"/> is in student table
+    /// </summary>
+    /// <param name="username"></param>
+    /// <param name="password"></param>
+    /// <returns></returns>
     public bool authStudent(string username, string password)
     {
       using var con = new NpgsqlConnection(_connectionString);
@@ -51,6 +71,11 @@ namespace CodeAnalyzerServer
       return res > 0;
     }
 
+    /// <summary>
+    /// Adds <paramref name="username"/>, <paramref name="password"/> to teachers table
+    /// </summary>
+    /// <param name="username"></param>
+    /// <param name="password"></param>
     public void addTeacher(string username, string password)
     {
       using var con = new NpgsqlConnection(_connectionString);
@@ -61,6 +86,12 @@ namespace CodeAnalyzerServer
       con.Close();
     }
 
+    /// <summary>
+    /// Adds <paramref name="name"/>, <paramref name="teacher"/> to groups table
+    /// </summary>
+    /// <param name="name"></param>
+    /// <param name="teacher"></param>
+    /// <exception cref="ArgumentException"></exception>
     public void addGroup(string name, string teacher)
     {
       using var con = new NpgsqlConnection(_connectionString);
@@ -80,6 +111,12 @@ namespace CodeAnalyzerServer
       con.Close();
     }
 
+    /// <summary>
+    /// Changes teacherUsername of <paramref name="name"/> to <paramref name="teacher"/>
+    /// </summary>
+    /// <param name="name"></param>
+    /// <param name="teacher"></param>
+    /// <exception cref="ArgumentException"></exception>
     public void updateGroupTeacher(string name, string teacher)
     {
       using var con = new NpgsqlConnection(_connectionString);
@@ -99,6 +136,14 @@ namespace CodeAnalyzerServer
       con.Close();
     }
 
+    /// <summary>
+    /// Adds <paramref name="username"/>, <paramref name="password"/>, <paramref name="group"/>
+    /// to students table
+    /// </summary>
+    /// <param name="username"></param>
+    /// <param name="password"></param>
+    /// <param name="group"></param>
+    /// <exception cref="ArgumentException"></exception>
     public void addStudent(string username, string password, string group)
     {
       using var con = new NpgsqlConnection(_connectionString);
@@ -119,6 +164,12 @@ namespace CodeAnalyzerServer
       con.Close();
     }
 
+    /// <summary>
+    /// Changes groupName of <paramref name="username"/> to <paramref name="group"/>
+    /// </summary>
+    /// <param name="username"></param>
+    /// <param name="group"></param>
+    /// <exception cref="ArgumentException"></exception>
     public void updateStudentGroup(string username, string group)
     {
       using var con = new NpgsqlConnection(_connectionString);
@@ -139,6 +190,10 @@ namespace CodeAnalyzerServer
       con.Close();
     }
 
+    /// <summary>
+    /// Deletes <paramref name="username"/> from teachers table
+    /// </summary>
+    /// <param name="username"></param>
     public void deleteStudent(string username)
     {
       using var con = new NpgsqlConnection(_connectionString);
@@ -151,6 +206,11 @@ namespace CodeAnalyzerServer
       con.Close();
     }
 
+    /// <summary>
+    /// Deletes <paramref name="name"/> from groups table
+    /// </summary>
+    /// <param name="name"></param>
+    /// <exception cref="ArgumentException"></exception>
     public void deleteGroup(string name)
     {
       using var con = new NpgsqlConnection(_connectionString);
@@ -168,6 +228,11 @@ namespace CodeAnalyzerServer
       con.Close();
     }
 
+    /// <summary>
+    /// Deletes <paramref name="username"/> from teachers table
+    /// </summary>
+    /// <param name="username"></param>
+    /// <exception cref="ArgumentException"></exception>
     public void deleteTeacher(string username)
     {
       using var con = new NpgsqlConnection(_connectionString);
@@ -185,6 +250,16 @@ namespace CodeAnalyzerServer
       con.Close();
     }
 
+    /// <summary>
+    /// Adds <paramref name="student"/>, <paramref name="problem"/>, <paramref name="file"/>,
+    /// LOCALTIMESTAMP, <paramref name="mistakes"/>, <paramref name="mistakeCnt"/> to entries table
+    /// </summary>
+    /// <param name="student"></param>
+    /// <param name="problem"></param>
+    /// <param name="file"></param>
+    /// <param name="mistakes"></param>
+    /// <param name="mistakeCnt"></param>
+    /// <exception cref="ArgumentException"></exception>
     public void addEntry(string student, string problem, string file, string mistakes, int mistakeCnt)
     {
       using var con = new NpgsqlConnection(_connectionString);
@@ -205,6 +280,11 @@ namespace CodeAnalyzerServer
       con.Close();
     }
 
+    /// <summary>
+    /// Returns string of all groups with teacherName = <paramref name="username"/>
+    /// </summary>
+    /// <param name="username"></param>
+    /// <returns></returns>
     public string GetGroups(string username)
     {
       using var con = new NpgsqlConnection(_connectionString);
@@ -222,6 +302,11 @@ namespace CodeAnalyzerServer
       return stringBuilder.ToString();
     }
 
+    /// <summary>
+    /// Returns string of pairs of group, student where group's teacherName = <paramref name="username"/>
+    /// </summary>
+    /// <param name="username"></param>
+    /// <returns></returns>
     public string GetStudents(string username)
     {
       using var con = new NpgsqlConnection(_connectionString);
@@ -240,6 +325,16 @@ namespace CodeAnalyzerServer
       return stringBuilder.ToString();
     }
 
+    /// <summary>
+    /// Returns file where id = <paramref name="id"/>
+    /// and studentName = <paramref name="username"/> for <paramref name="mode"/> = StudentMode
+    /// or studentName's groupName's teacherName = <paramref name="username"/>
+    /// for <paramref name="mode"/> = TeacherMode
+    /// </summary>
+    /// <param name="id"></param>
+    /// <param name="username"></param>
+    /// <param name="mode"></param>
+    /// <returns></returns>
     public string getFile(int id, string username, string mode)
     {
       using var con = new NpgsqlConnection(_connectionString);
@@ -260,6 +355,16 @@ namespace CodeAnalyzerServer
       return fileText;
     }
 
+    /// <summary>
+    /// Returns mistakes where id = <paramref name="id"/>
+    /// and studentName = <paramref name="username"/> for <paramref name="mode"/> = StudentMode
+    /// or studentName's groupName's teacherName = <paramref name="username"/>
+    /// for <paramref name="mode"/> = TeacherMode
+    /// </summary>
+    /// <param name="id"></param>
+    /// <param name="username"></param>
+    /// <param name="mode"></param>
+    /// <returns></returns>
     public string getMistakes(int id, string username, string mode)
     {
       using var con = new NpgsqlConnection(_connectionString);
@@ -280,6 +385,14 @@ namespace CodeAnalyzerServer
       return mistakes;
     }
 
+    /// <summary>
+    /// Deletes entry with id = <paramref name="id"/>
+    /// and studentName = <paramref name="username"/> and <paramref name="mode"/> = StudentMode
+    /// </summary>
+    /// <param name="id"></param>
+    /// <param name="username"></param>
+    /// <param name="mode"></param>
+    /// <returns></returns>
     public string deleteEntry(int id, string username, string mode)
     {
       using var con = new NpgsqlConnection(_connectionString);
@@ -301,6 +414,12 @@ namespace CodeAnalyzerServer
       return "Entry deleted";
     }
 
+    /// <summary>
+    /// Checks if <paramref name="studentUsername"/>'s groupName's teacherName = <paramref name="teacherUsername"/>
+    /// </summary>
+    /// <param name="teacherUsername"></param>
+    /// <param name="studentUsername"></param>
+    /// <returns></returns>
     public bool CheckStudentTeacher(string teacherUsername, string studentUsername)
     {
       using var con = new NpgsqlConnection(_connectionString);
@@ -319,6 +438,11 @@ namespace CodeAnalyzerServer
       return ans;
     }
 
+    /// <summary>
+    /// Returns entry statistics for <paramref name="studentUsername"/>
+    /// </summary>
+    /// <param name="studentUsername"></param>
+    /// <returns></returns>
     public string GetStudentStats(string studentUsername)
     {
       using var con = new NpgsqlConnection(_connectionString);
@@ -349,6 +473,11 @@ namespace CodeAnalyzerServer
       return stringBuilder.ToString();
     }
 
+    /// <summary>
+    /// Returns entry statistics of <paramref name="studentUsername"/>'s groupName
+    /// </summary>
+    /// <param name="studentUsername"></param>
+    /// <returns></returns>
     public string GetStudentGroup(string studentUsername)
     {
       using var con = new NpgsqlConnection(_connectionString);
@@ -362,6 +491,11 @@ namespace CodeAnalyzerServer
       return ans;
     }
 
+    /// <summary>
+    /// Returns entry statistics of <paramref name="groupName"/>
+    /// </summary>
+    /// <param name="groupName"></param>
+    /// <returns></returns>
     public string GetGroupStats(string groupName)
     {
       using var con = new NpgsqlConnection(_connectionString);
@@ -393,6 +527,12 @@ namespace CodeAnalyzerServer
       return stringBuilder.ToString();
     }
 
+    /// <summary>
+    /// Returns ids, problems, datetimes, mistakeCounts of all entries
+    /// of <paramref name="studentUsername"/>
+    /// </summary>
+    /// <param name="studentUsername"></param>
+    /// <returns></returns>
     public string GetStudentEntries(string studentUsername)
     {
       using var con = new NpgsqlConnection(_connectionString);

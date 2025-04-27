@@ -7,19 +7,6 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Query.Expressions.Internal;
 
 string connectionString = "Host=localhost;Username=postgres;Password=fbje22;Database=codeanalyzerdb";
 
-/*using var con = new NpgsqlConnection(connectionString);
-con.Open();
-using var command = new NpgsqlCommand("", con);
-command.CommandText = "DROP TABLE IF EXISTS teachers";
-command.ExecuteNonQuery();
-command.CommandText = "DROP TABLE IF EXISTS groups";
-command.ExecuteNonQuery();
-command.CommandText = "DROP TABLE IF EXISTS students";
-command.ExecuteNonQuery();
-command.CommandText = "DROP TABLE IF EXISTS entries";
-command.ExecuteNonQuery();*/
-
-
 DatabaseHandler handler = new DatabaseHandler(connectionString);
 RequestHandler requestHandler = new RequestHandler(handler);
 
@@ -40,7 +27,6 @@ finally
 {
   tcpListener.Stop();
 }
-
 
 async Task ProcessClientAsync(TcpClient tcpClient)
 {

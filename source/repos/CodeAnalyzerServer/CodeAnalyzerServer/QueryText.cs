@@ -6,8 +6,16 @@ using System.Threading.Tasks;
 
 namespace CodeAnalyzerServer
 {
+  /// <summary>
+  /// Class for making text Sql-query-friendly
+  /// </summary>
   public class QueryText
   {
+    /// <summary>
+    /// Return <paramref name="text"/> with doubled '\'
+    /// </summary>
+    /// <param name="text"></param>
+    /// <returns></returns>
     public string TextToQuery(string text)
     {
       StringBuilder sb = new StringBuilder();

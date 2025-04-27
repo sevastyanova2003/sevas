@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace CodeAnalyzerServer
 {
+  /// <summary>
+  /// Class for reading through parsed words and symbols from code
+  /// </summary>
   public class Parser
   {
     private string[] _lines;
@@ -16,6 +19,13 @@ namespace CodeAnalyzerServer
 
     public int CurLine { get { return _cur_line; } }
 
+    public int CurId { get { return _cur_id; } }
+
+    /// <summary>
+    /// Creates Parser of <paramref name="lines"/> where index is <paramref name="meaningful"/>
+    /// </summary>
+    /// <param name="lines"></param>
+    /// <param name="meaningful"></param>
     public Parser(string[] lines, List<List<bool>> meaningful)
     {
       _lines = lines;
@@ -24,11 +34,19 @@ namespace CodeAnalyzerServer
       _meaningful = meaningful;
     }
 
+    /// <summary>
+    /// Checks if char <paramref name="c"/> is part of an identifier
+    /// </summary>
+    /// <param name="c"></param>
+    /// <returns></returns>
     public bool IsIdentifierSymbol(char c)
     {
       return c == '_' || Char.IsLetterOrDigit(c);
     }
 
+    /// <summary>
+    /// Skips to next symbol
+    /// </summary>
     private void IncreaseId()
     {
       _cur_id++;
@@ -43,8 +61,20 @@ namespace CodeAnalyzerServer
       }
     }
 
+    /// <summary>
+    /// Return next meaningful word or symbol in text and moves index of reading
+    /// </summary>
+    /// <returns></returns>
     public string? GetWord()
     {
+      if (_cur_line >= _lines.Length)
+      {
+        return null;
+      }
+      if (_cur_id >= _lines[_cur_line].Length)
+      {
+        IncreaseId();
+      }
       if (_cur_line >= _lines.Length)
       {
         return null;
@@ -65,7 +95,7 @@ namespace CodeAnalyzerServer
         return ans;
       }
       StringBuilder stringBuilder = new StringBuilder();
-      while (_cur_line < _lines.Length && IsIdentifierSymbol(_lines[_cur_line][_cur_id]))
+      while (_cur_line < _lines.Length && IsIdentifierSymbol(_lines[_cur_line][_cur_id]) && _meaningful[_cur_line][_cur_id])
       {
         stringBuilder.Append(_lines[_cur_line][_cur_id]);
         IncreaseId();
@@ -73,11 +103,15 @@ namespace CodeAnalyzerServer
       return stringBuilder.ToString();
     }
 
+    /// <summary>
+    /// Returns next meaningful char in text, index of reading remains the same
+    /// </summary>
+    /// <returns></returns>
     public char? PeakChar()
     {
       int cur_line = _cur_line;
       int cur_id = _cur_id;
-      while (_cur_line < _lines.Length && (!_meaningful[cur_line][cur_id] || Char.IsWhiteSpace(_lines[_cur_line][_cur_id])))
+      while (_cur_line < _lines.Length && (_cur_id >= _lines[_cur_line].Length || !_meaningful[_cur_line][_cur_id] || Char.IsWhiteSpace(_lines[_cur_line][_cur_id])))
       {
         IncreaseId();
       }
@@ -88,6 +122,8 @@ namespace CodeAnalyzerServer
         _cur_id = cur_id;
         return ans;
       }
+      _cur_line = cur_line;
+      _cur_id = cur_id;
       return null;
     }
 

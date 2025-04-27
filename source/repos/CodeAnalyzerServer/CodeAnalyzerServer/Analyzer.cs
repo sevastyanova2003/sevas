@@ -18,20 +18,19 @@ namespace CodeAnalyzerServer
       "add\r\nand\r\nalias\r\nascending\r\nasync\r\nawait\r\nby\r\ndescending\r\ndynamic\r\nequals\r\nfrom\r\n\r\nget\r\nglobal\r\ngroup\r\ninit\r\ninto\r\njoin\r\nlet\r\nmanaged\r\nnameof\r\nnint\r\nnot\r\nnotnull\r\non\r\norderby\r\npartial\r\nremove\r\nselect\r\nset\r\nunmanaged\r\nvalue\r\nvar\r\nwhen\r\nwhere\r\nwhere\r\nwith\r\nyield").Split("\r\n").ToHashSet<string>();
 
     /// <summary>
-    /// Creates Analyzer for file in path
+    /// Creates Analyzer of <paramref name="text"/>
     /// </summary>
-    /// <param name="path"></param>
-    /// <exception cref="ArgumentException"></exception>
+    /// <param name="text"></param>
     public Analyzer(string text)
     {
       _text = text;
     }
 
     /// <summary>
-    /// Deletes /**/ type comments
+    /// Marks characters in <paramref name="text"/> in /**/ comments as not <paramref name="meaningful"/>
     /// </summary>
     /// <param name="text"></param>
-    /// <returns></returns>
+    /// <param name="meaningful"></param>
     private void DeleteComments(string[] text, List<List<bool> > meaningful)
     {
       bool isLongComment = false;
@@ -62,6 +61,13 @@ namespace CodeAnalyzerServer
       }
     }
 
+    /// <summary>
+    /// Checks if <paramref name="s"/>[<paramref name="begin"/>:<paramref name="end"/>] is in Pascal style
+    /// </summary>
+    /// <param name="s"></param>
+    /// <param name="begin"></param>
+    /// <param name="end"></param>
+    /// <returns></returns>
     private bool IsPascal(string s, int begin, int end)
     {
       if (end > s.Length || begin >= end)
@@ -82,6 +88,13 @@ namespace CodeAnalyzerServer
       return true;
     }
 
+    /// <summary>
+    /// Checks if <paramref name="s"/>[<paramref name="begin"/>:<paramref name="end"/>] is in camel style
+    /// </summary>
+    /// <param name="s"></param>
+    /// <param name="begin"></param>
+    /// <param name="end"></param>
+    /// <returns></returns>
     private bool IsCamel(string s, int begin, int end)
     {
       if (end > s.Length || begin >= end)
@@ -102,6 +115,13 @@ namespace CodeAnalyzerServer
       return true;
     }
 
+    /// <summary>
+    /// Checks if <paramref name="s"/>[<paramref name="begin"/>:<paramref name="end"/>] is in IPascal style
+    /// </summary>
+    /// <param name="s"></param>
+    /// <param name="begin"></param>
+    /// <param name="end"></param>
+    /// <returns></returns>
     private bool IsInterface(string s, int begin, int end)
     {
       if (end > s.Length || begin >= end)
@@ -115,6 +135,13 @@ namespace CodeAnalyzerServer
       return IsPascal(s, begin + 1, end);
     }
 
+    /// <summary>
+    /// Checks if <paramref name="s"/>[<paramref name="begin"/>:<paramref name="end"/>] is in _camel style
+    /// </summary>
+    /// <param name="s"></param>
+    /// <param name="begin"></param>
+    /// <param name="end"></param>
+    /// <returns></returns>
     private bool IsPrivateField(string s, int begin, int end)
     {
       if (end > s.Length || begin >= end)
@@ -128,6 +155,11 @@ namespace CodeAnalyzerServer
       return IsCamel(s, begin + 1, end);
     }
 
+    /// <summary>
+    /// Adds identificator name mistakes in <paramref name="parser"/> to <paramref name="res"/>
+    /// </summary>
+    /// <param name="parser"></param>
+    /// <param name="res"></param>
     private void RunThough(Parser parser, List<string> res)
     {
       bool classExpected = false;
@@ -201,6 +233,11 @@ namespace CodeAnalyzerServer
       }
     }
 
+    /// <summary>
+    /// Adds "Extra empty line" mistakes in <paramref name="text"/> to <paramref name="res"/>
+    /// </summary>
+    /// <param name="text"></param>
+    /// <param name="res"></param>
     private void CheckEmptyLines(string[] text, List<string> res)
     {
       for (int i = 1; i < text.Length; ++i)
@@ -212,6 +249,11 @@ namespace CodeAnalyzerServer
       }
     }
 
+    /// <summary>
+    /// Adds "using tab" mistakes in <paramref name="text"/> to <paramref name="res"/>
+    /// </summary>
+    /// <param name="text"></param>
+    /// <param name="res"></param>
     private void CheckTabs(string[] text, List<string> res)
     {
       for (int i = 0; i < text.Length; ++i)
@@ -226,6 +268,12 @@ namespace CodeAnalyzerServer
       }
     }
 
+    /// <summary>
+    /// Adds Allman mistakes in <paramref name="text"/> where <paramref name="meaningful"/> to <paramref name="res"/>
+    /// </summary>
+    /// <param name="text"></param>
+    /// <param name="meaningful"></param>
+    /// <param name="res"></param>
     private void CheckAllman(string[] text, List<List<bool> > meaningful, List<string> res)
     {
       for (int i = 0; i < text.Length; i++)
@@ -243,6 +291,11 @@ namespace CodeAnalyzerServer
       }
     }
 
+    /// <summary>
+    /// Adds spurious white spaces mistakes in <paramref name="text"/> to <paramref name="res"/>
+    /// </summary>
+    /// <param name="text"></param>
+    /// <param name="res"></param>
     private void CheckWhiteSpaces(string[] text, List<string> res)
     {
       for (int i = 0; i < text.Length; i++)
@@ -264,6 +317,11 @@ namespace CodeAnalyzerServer
       }
     }
 
+    /// <summary>
+    /// Adds "too long function" mistakes in <paramref name="parser"/> to <paramref name="res"/>
+    /// </summary>
+    /// <param name="parser"></param>
+    /// <param name="res"></param>
     private void CheckBrackets(Parser parser, List<string> res)
     {
       List<int> bracketRow = new List<int>();
@@ -299,6 +357,10 @@ namespace CodeAnalyzerServer
       }
     }
 
+    /// <summary>
+    /// Returns List of styling mistakes in _text
+    /// </summary>
+    /// <returns></returns>
     public List<string> Analyze()
     {
       List<string> res = new List<string>();
